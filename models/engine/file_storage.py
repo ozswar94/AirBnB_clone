@@ -3,6 +3,12 @@
 
 
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.review import Review
+from models.place import Place
+from models.city import City
+from models.amenity import Amenity
 import json
 
 
@@ -17,7 +23,7 @@ class FileStorage:
 
     def new(self, obj):
         """ set up object with id """
-        key = "{}.{}".format(obj.__class__.__name__, obj.id)
+        key = "{}.{}".format(type(obj).__class__.__name__, obj.id)
         self.__objects[key] = obj
 
     def save(self):
