@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
-import cmd, sys
+
+import cmd
+import sys
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models.user import User
@@ -16,14 +18,17 @@ class HBNBCommand(cmd.Cmd):
     """HBNB console"""
     prompt = '(hbnb) '
     file = None
-    class_exist = {"BaseModel": BaseModel}
+    class_exist = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "City": City,
+        "State": State,
+        "Palce": Place,
+        "Review": Review,
+        "Amenity": Amenity
+    }
 
-    storage = FileStorage()
-    storage.reload()
-
-
-
-    def do_EOF(self,arg):
+    def do_EOF(self, arg):
         return True
 
     def do_quit(self, arg):
@@ -44,7 +49,6 @@ class HBNBCommand(cmd.Cmd):
     def do_emptyline(self):
         return False
 
-
     def do_show(self, arg):
         args = arg.split()
         if len(arg) == 1:
@@ -52,11 +56,38 @@ class HBNBCommand(cmd.Cmd):
         elif len(arg) == 0:
             print("** class name missing")
         else:
-            key_to_search = "{}.{}".format(args[0],args[1])
-            """if not key_to_search in storage.all():"""
-            print(storage.all()[key_to_search])
-            """else:
-                print("**class doesn't exist **")"""
+            key_to_search = "{}.{}".format(args[0], args[1])
+            if key_to_search in storage.all():
+                print(storage.all()[key_to_search])
+            else:
+                print("** no instance found **")
+
+    def do_all(self, arg):
+        if arg not in self.class_exist:
+            print("** class doesn't exist **")
+        if len(arg) == 0:
+            for key, value in storage.all().items():
+                print(storage.all()[key])
+        else:
+            for key, value in storage.all().items():
+                class_name = key.split('.')
+                if class_name[0] == arg:
+                    print(storage.all()[key])
+
+
+    def do_destroy(self, arg):
+        args = arg.split()
+        if len(arg) == 1:
+            print("** class id missing")
+        elif len(arg) == 0:
+            print("** class name missing")
+        else:
+            key_to_search = "{}.{}".format(args[0], args[1])
+            if key_to_search in storage.all():
+                del storage.all()[key_to_search]
+                storage.save()
+            else:
+                print("** no instance found **")
 
 
 if __name__ == '__main__':
