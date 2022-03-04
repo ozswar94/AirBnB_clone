@@ -27,6 +27,16 @@ class HBNBCommand(cmd.Cmd):
         "Review": Review,
         "Amenity": Amenity
     }
+    typeof_attribut =
+    {
+        "Integer": [
+            "number_rooms",
+            "number_bathrooms",
+            "max_guest",
+            "price_by_night"
+            ],
+        "Float": ["latitude", "longitude"],
+    }
 
     def do_EOF(self, arg):
         return True
@@ -74,7 +84,6 @@ class HBNBCommand(cmd.Cmd):
                 if class_name[0] == arg:
                     print(storage.all()[key])
 
-
     def do_destroy(self, arg):
         args = arg.split()
         if len(arg) == 1:
@@ -88,6 +97,45 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             else:
                 print("** no instance found **")
+
+    def do_update(self, arg):
+        args = arg.split()
+
+        if len(args) != 0:
+            if args[0] in self.class_exist:
+                if len(args) >= 2:
+                    k = "{}.{}".format(args[0], args[1])
+                    if k in storage.all():
+                        if len(args) >= 3:
+                            if len(args) == 4:
+                                value = args[3].strip('"')
+                                if args[2] in self.typeof_attribut["Integer"]:
+                                    try:
+                                        value = int(value)
+                                    except ValueError:
+                                        value = 0
+                                    setattr(storage.all()[k], args[2], value)
+                                elif args[2] in self.typeof_attribut["Float"]:
+                                    try:
+                                        value = float(value)
+                                    except ValueError:
+                                        value = 0.0
+                                    setattr(storage.all()[k], args[2], value)
+                                else:
+                                    setattr(storage.all()[k], args[2], value)
+                                storage.save()
+                            else:
+                                print("** value missing **")
+                        else:
+                            print("** attribute name missing **")
+                    else:
+                        print("** no instance found **")
+                else:
+                    print("** instance id missing **")
+            else:
+                print("** class doesn't exist *")
+        else:
+            print("** class name missing **")
 
 
 if __name__ == '__main__':
