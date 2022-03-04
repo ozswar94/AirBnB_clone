@@ -27,8 +27,7 @@ class HBNBCommand(cmd.Cmd):
         "Review": Review,
         "Amenity": Amenity
     }
-    typeof_attribut =
-    {
+    typeof_attribut = {
         "Integer": [
             "number_rooms",
             "number_bathrooms",
