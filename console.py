@@ -131,7 +131,7 @@ class HBNBCommand(cmd.Cmd):
                     if k in storage.all():
                         if len(args) >= 3:
                             if len(args) == 4:
-                                value = args[3].strip('"')
+                                value = args[3].strip("\"':")
                                 if args[2] in self.typeof_attribut["Integer"]:
                                     try:
                                         value = int(value)
