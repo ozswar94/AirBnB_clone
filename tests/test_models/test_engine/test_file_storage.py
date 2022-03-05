@@ -15,7 +15,7 @@ class TestFileStorage(unittest.TestCase):
 
     def test_all(self):
         """ test return type of method all """
-        storage =  FileStorage()
+        storage = FileStorage()
         test_type = storage.all()
         self.assertEqual(type(test_type), dict)
 
@@ -26,7 +26,7 @@ class TestFileStorage(unittest.TestCase):
         storage.new(my_model)
         key = str(my_model.__class__.__name__ + "." + my_model.id)
         self.assertTrue(key in storage._FileStorage__objects)
-    
+
     def test_save_exist_file(self):
         """ test if json file exixt """
         storage = FileStorage()
@@ -37,7 +37,7 @@ class TestFileStorage(unittest.TestCase):
         """ test json is readable """
         storage = FileStorage()
         storage.save()
-    
+
         with open("file.json", 'r') as json_file:
             content = json.load(json_file)
 
@@ -49,8 +49,9 @@ class TestFileStorage(unittest.TestCase):
         try:
             storage.reload()
             self.assertTrue(True)
-        except:
+        except TypeError:
             self.assertTrue(False)
+
 
 if __name__ == "__main__":
     unittest.main()
