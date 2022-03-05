@@ -128,25 +128,26 @@ class HBNBCommand(cmd.Cmd):
 
         if len(args) != 0:
             if args[0] in self.class_exist:
-                if len(args) > 2:
+                if len(args) >= 2:
                     k = "{}.{}".format(args[0], args[1])
                     if k in storage.all():
-                        if len(args) > 3:
+                        if len(args) >= 3:
                             if len(args) == 4:
-                                value = args[3].strip('"\':')
+                                value = args[3].strip('"')
                                 if args[2] in self.typeof_attribut["Integer"]:
                                     try:
                                         value = int(value)
                                     except ValueError:
                                         value = 0
+                                    setattr(storage.all()[k], args[2], value)
                                 elif args[2] in self.typeof_attribut["Float"]:
                                     try:
                                         value = float(value)
                                     except ValueError:
                                         value = 0.0
+                                    setattr(storage.all()[k], args[2], value)
                                 else:
-                                    value = str(value)
-                                setattr(storage.all()[k], args[2], value)
+                                    setattr(storage.all()[k], args[2], value)
                                 storage.save()
                             else:
                                 print("** value missing **")
