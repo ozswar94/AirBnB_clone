@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ define Class HBNBCommand """
 
+
 import cmd
 import sys
 from models.engine.file_storage import FileStorage
