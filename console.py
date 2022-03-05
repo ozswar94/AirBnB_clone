@@ -85,16 +85,23 @@ class HBNBCommand(cmd.Cmd):
         """All command to print all instance or all instance by class name
         all | all <class name>
         """
-        if arg not in self.class_exist:
-            print("** class doesn't exist **")
         if len(arg) == 0:
+            all_instance = []
             for key, value in storage.all().items():
-                print(storage.all()[key])
+                all_instance.append(str(storage.all()[key]))
+            print(all_instance)
+            return
+        args = arg.split()
+        if args[0] not in self.class_exist:
+            print("** class doesn't exist **")
+            return False
         else:
+            obj_instance = []
             for key, value in storage.all().items():
                 class_name = key.split('.')
-                if class_name[0] == arg:
-                    print(storage.all()[key])
+                if class_name[0] == args[0]:
+                    obj_instance.append(str(storage.all()[key]))
+            print(obj_instance)
 
     def do_destroy(self, arg):
         """Destroy command to remove instance
