@@ -107,9 +107,9 @@ class HBNBCommand(cmd.Cmd):
         destroy <class name> <id>
         """
         args = arg.split()
-        if len(arg) == 1:
+        if len(args) == 1:
             print("** class id missing")
-        elif len(arg) == 0:
+        elif len(args) == 0:
             print("** class name missing")
         else:
             key_to_search = "{}.{}".format(args[0], args[1])
