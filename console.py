@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+""" define Class HBNBCommand """
 
 import cmd
 import sys
@@ -23,7 +23,7 @@ class HBNBCommand(cmd.Cmd):
         "User": User,
         "City": City,
         "State": State,
-        "Palce": Place,
+        "Place": Place,
         "Review": Review,
         "Amenity": Amenity
     }
@@ -44,6 +44,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_create(self, arg):
+        """ Command 'create' for create a new instance """
         if arg in self.class_exist.keys():
             obj = self.class_exist[arg]()
             print(obj.id)
@@ -59,6 +60,7 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def do_show(self, arg):
+        """ Command 'show' for """
         args = arg.split()
         if len(arg) == 1:
             print("** class id missing")

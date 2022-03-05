@@ -13,7 +13,11 @@ import json
 
 
 class FileStorage:
-    """ class FileStorage """
+    """ class FileStorage
+            Attributes:
+                __objects: dict
+                __file_path: string
+    """
     __file_path = "file.json"
     __objects = {}
 
@@ -41,5 +45,5 @@ class FileStorage:
                     name = val_obj["__class__"]
                     del val_obj["__class__"]
                     self.new(eval(name)(**val_obj))
-        except:
+        except OSError:
             return

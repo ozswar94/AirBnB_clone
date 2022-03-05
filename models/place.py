@@ -7,7 +7,7 @@ from models.amenity import Amenity
 
 
 class Place(BaseModel):
-    """ class Place that inherits from Base 
+    """ class Place that inherits from Base
         Attribute:
             city_id: City.id()
             user_id: User.id()
