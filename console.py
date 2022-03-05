@@ -52,7 +52,7 @@ class HBNBCommand(cmd.Cmd):
         create <class name>
         """
         args = arg.split()
-        if len(args[0]) == 0:
+        if len(args) == 0:
             print("** class name missing **")
         elif args[0] in self.class_exist.keys():
             obj = self.class_exist[arg[0]]()
