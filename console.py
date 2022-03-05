@@ -84,13 +84,13 @@ class HBNBCommand(cmd.Cmd):
         """All command to print all instance or all instance by class name
         all | all <class name>
         """
-        if len(arg) == 0:
+        args = arg.split()
+        if len(args) == 0:
             all_instance = []
             for key, value in storage.all().items():
                 all_instance.append(str(storage.all()[key]))
             print(all_instance)
             return
-        args = arg.split()
         if args[0] not in self.class_exist:
             print("** class doesn't exist **")
             return False
@@ -124,7 +124,6 @@ class HBNBCommand(cmd.Cmd):
         update <class name> <id> <attribute name> <attribute value>
         """
         args = arg.split()
-
         if len(args) != 0:
             if args[0] in self.class_exist:
                 if len(args) >= 2:
