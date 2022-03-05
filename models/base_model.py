@@ -7,19 +7,13 @@ from uuid import uuid4
 from datetime import datetime
 
 
-class BaseModel():
-    """ class BaseModel
-            Attributes:
-                id: string
-                created_at: datetime
-                updated_at: datetime
-    """
+class BaseModel:
+    """ The BaseModel class """
     def __init__(self, *args, **kwargs):
         """ constructor of instance BaseModel """
         self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-
         format_time = "%Y-%m-%dT%H:%M:%S.%f"
         if len(kwargs) != 0:
             for k, v in kwargs.items():

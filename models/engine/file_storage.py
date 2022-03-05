@@ -13,11 +13,7 @@ import json
 
 
 class FileStorage:
-    """ class FileStorage
-            Attributes:
-                __objects: dict
-                __file_path: string
-    """
+    """ class FileStorage handle the Json file """
     __file_path = "file.json"
     __objects = {}
 

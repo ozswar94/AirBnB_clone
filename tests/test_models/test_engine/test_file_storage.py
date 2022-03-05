@@ -20,6 +20,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(type(test_type), dict)
 
     def test_new(self):
+        """ test new methode """
         my_model = BaseModel()
         storage = FileStorage()
         storage.new(my_model)
@@ -27,11 +28,13 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(key in storage._FileStorage__objects)
     
     def test_save_exist_file(self):
+        """ test if json file exixt """
         storage = FileStorage()
         storage.save()
         self.assertTrue(os.path.isfile("file.json"))
 
     def test_save_read_json(self):
+        """ test json is readable """
         storage = FileStorage()
         storage.save()
     
@@ -41,6 +44,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(type(content), dict)
 
     def test_reaload_without_file(self):
+        """ test method reload """
         storage = FileStorage()
         try:
             storage.reload()
