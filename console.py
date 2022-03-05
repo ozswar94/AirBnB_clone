@@ -62,10 +62,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return False
 
-    def do_emptyline(self):
-        """Emptyline
-        """
-        return False
+    def emptyline(self):
+        pass
 
     def do_show(self, arg):
         """Show command to print instance
