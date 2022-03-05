@@ -51,16 +51,15 @@ class HBNBCommand(cmd.Cmd):
         """Create command for create a new instance
         create <class name>
         """
-        if arg in self.class_exist.keys():
-            obj = self.class_exist[arg]()
-            print(obj.id)
-            obj.save()
-        elif len(arg) == 0:
+        args = arg.split()
+        if len(args[0]) == 0:
             print("** class name missing **")
-            return False
+        elif args[0] in self.class_exist.keys():
+            obj = self.class_exist[arg[0]]()
+            obj.save()
+            print(obj.id)
         else:
             print("** class doesn't exist **")
-            return False
 
     def emptyline(self):
         pass
