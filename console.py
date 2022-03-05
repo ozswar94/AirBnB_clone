@@ -38,13 +38,19 @@ class HBNBCommand(cmd.Cmd):
     }
 
     def do_EOF(self, arg):
+        """EOF command to exit with and of file
+        """
         return True
 
     def do_quit(self, arg):
+        """Quit command to exit the program
+        """
         return True
 
     def do_create(self, arg):
-        """ Command 'create' for create a new instance """
+        """Create command for create a new instance
+        create <class name>
+        """
         if arg in self.class_exist.keys():
             obj = self.class_exist[arg]()
             print(obj.id)
@@ -57,10 +63,14 @@ class HBNBCommand(cmd.Cmd):
             return False
 
     def do_emptyline(self):
+        """Emptyline
+        """
         return False
 
     def do_show(self, arg):
-        """ Command 'show' for """
+        """Show command to print instance
+        show <class name> <id>
+        """
         args = arg.split()
         if len(arg) == 1:
             print("** class id missing")
@@ -74,6 +84,9 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, arg):
+        """All command to print all instance or all instance by class name
+        all | all <class name>
+        """
         if arg not in self.class_exist:
             print("** class doesn't exist **")
         if len(arg) == 0:
@@ -86,6 +99,9 @@ class HBNBCommand(cmd.Cmd):
                     print(storage.all()[key])
 
     def do_destroy(self, arg):
+        """Destroy command to remove instance
+        destroy <class name> <id>
+        """
         args = arg.split()
         if len(arg) == 1:
             print("** class id missing")
@@ -100,6 +116,9 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_update(self, arg):
+        """Update command to modify instance and save it
+        update <class name> <id> <attribute name> <attribute value>
+        """
         args = arg.split()
 
         if len(args) != 0:
