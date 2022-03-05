@@ -92,7 +92,7 @@ class TestReview(unittest.TestCase):
     def test_init_kwargs2(self):
         """test for method __init__ of Review by kwagrs
         """
-        r = Review(texte="a")
+        r = Review(text="a")
         rdic = r.to_dict()
         c = Review(**rdic)
         self.assertEqual(r.text, c.text)
