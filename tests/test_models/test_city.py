@@ -8,6 +8,7 @@ from models.base_model import BaseModel
 from models.city import City
 from models.state import State
 
+
 class TestCity(unittest.TestCase):
     """
     Test of class City

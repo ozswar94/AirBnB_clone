@@ -7,6 +7,7 @@ import time
 from models.base_model import BaseModel
 from models.state import State
 
+
 class TestState(unittest.TestCase):
     """
     Test of class State
@@ -80,7 +81,6 @@ class TestState(unittest.TestCase):
         s = State()
         sdic = s.to_dict()
         self.assertEqual(s.updated_at.isoformat(), sdic['updated_at'])
-
 
 
 if __name__ == "__main__":
