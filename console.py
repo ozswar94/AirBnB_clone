@@ -72,8 +72,10 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if len(args) == 0:
             print("** class name missing **")
+        elif args[0] not in self.class_exist:
+            print("** class doesn't exist **")
         elif len(args) == 1:
-            print("** class id missing **")
+            print("** instance id missing **")
         else:
             key_to_search = "{}.{}".format(args[0], args[1])
             if key_to_search in storage.all():
