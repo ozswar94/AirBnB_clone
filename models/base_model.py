@@ -12,8 +12,8 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """ constructor of instance BaseModel """
         self.id = str(uuid4())
-        self.created_at = datetime.today()
-        self.updated_at = datetime.today()
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
         format_time = "%Y-%m-%dT%H:%M:%S.%f"
         if len(kwargs) != 0:
             for k, v in kwargs.items():
@@ -35,7 +35,7 @@ class BaseModel:
 
     def save(self):
         """ save object in json file """
-        self.updated_at = datetime.today()
+        self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
