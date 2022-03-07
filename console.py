@@ -70,10 +70,10 @@ class HBNBCommand(cmd.Cmd):
         show <class name> <id>
         """
         args = arg.split()
-        if len(args) == 1:
-            print("** class id missing **")
-        elif len(args) == 0:
+        if len(args) == 0:
             print("** class name missing **")
+        elif len(args) == 1:
+            print("** class id missing **")
         else:
             key_to_search = "{}.{}".format(args[0], args[1])
             if key_to_search in storage.all():
