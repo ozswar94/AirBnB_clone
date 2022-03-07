@@ -121,12 +121,11 @@ class TestFileStorage(unittest.TestCase):
         with self.assertRaises(TypeError):
             models.storage.reload(None)
 
-    def test_reaload_without_file(self):
+    def test_reaload(self):
         """
             Tests that nothing happens when file.json does not exists
             and reload is called
         """
-
         try:
             models.storage.reload()
             self.assertTrue(True)
