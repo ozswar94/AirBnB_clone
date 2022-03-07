@@ -73,15 +73,16 @@ class TestBaseModel(unittest.TestCase):
         b = BaseModel(my_number=None)
         self.assertEqual(b.my_number, None)
 
-    """def test_method_save(self):
-        b = BaseModel()
-        time.sleep(60)
-        b.save()
-        up = b.updated_at
-        d = datetime.now()
-        self.assertEqual(str(up)[0:-10], d.strftime('%Y-%m-%d %H:%M'))
-    *** il faut trop de temps a lancer donc decommentaire a la fin
-    """
+    def test_method_save(self):
+        inst = BaseModel()
+        old_created_at = inst.created_at
+        old_updated_at = inst.updated_at
+        inst.save()
+        new_created_at = inst.created_at
+        new_updated_at = inst.updated_at
+        self.assertNotEqual(old_updated_at, new_updated_at)
+        self.assertEqual(old_created_at, new_created_at)
+        self.assertTrue(mock_storage.save.called)
 
     def test_to_dict(self):
         """test for method to_dict of BaseModel
