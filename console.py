@@ -71,9 +71,9 @@ class HBNBCommand(cmd.Cmd):
         """
         args = arg.split()
         if len(args) == 1:
-            print("** class id missing")
+            print("** class id missing **")
         elif len(args) == 0:
-            print("** class name missing")
+            print("** class name missing **")
         else:
             key_to_search = "{}.{}".format(args[0], args[1])
             if key_to_search in storage.all():
@@ -109,11 +109,9 @@ class HBNBCommand(cmd.Cmd):
         """
         args = arg.split()
         if len(args) == 0:
-            print("** class name missing")
-            return
+            print("** class name missing **")
         elif len(args) == 1:
-            print("** class id missing")
-            return
+            print("** class id missing **")
         else:
             key_to_search = "{}.{}".format(args[0], args[1])
             if key_to_search in storage.all():
