@@ -35,7 +35,7 @@ class BaseModel:
 
     def save(self):
         """ save object in json file """
-        self.updated_at = self.updated_at.now()
+        self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
