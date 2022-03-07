@@ -96,7 +96,7 @@ class TestFileStorage(unittest.TestCase):
             models.storage.save(None)
 
     def test_reload_method(self):
-        """Tests the reload method... Quite tricky!"""
+        """Tests the reload method"""
         dummy_bm = BaseModel()
         dummy_user = User()
         dummy_state = State()
@@ -120,6 +120,18 @@ class TestFileStorage(unittest.TestCase):
         # What happens when an arg is passed? TypeError is raised
         with self.assertRaises(TypeError):
             models.storage.reload(None)
+
+    def test_reaload_without_file(self):
+        """
+            Tests that nothing happens when file.json does not exists
+            and reload is called
+        """
+
+        try:
+            models.storage.reload()
+            self.assertTrue(True)
+        except Exception:
+            self.assertTrue(False)
 
 if __name__ == "__main__":
     unittest.main()
