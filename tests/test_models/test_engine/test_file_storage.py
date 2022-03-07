@@ -121,7 +121,7 @@ class TestFileStorage(unittest.TestCase):
         with self.assertRaises(TypeError):
             models.storage.reload(None)
 
-    def test_reaload(self):
+    def test_reload(self):
         """
             Tests that nothing happens when file.json does not exists
             and reload is called
@@ -131,6 +131,11 @@ class TestFileStorage(unittest.TestCase):
             self.assertTrue(True)
         except Exception:
             self.assertTrue(False)
+
+    def tearDown(self):
+        import os
+        if os.path.isfile("file.json"):
+            os.remove('file.json')
 
 if __name__ == "__main__":
     unittest.main()
